@@ -3,61 +3,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saran's Portfolio</title>
+  <title>Saran — Building Things</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <!-- ===== NOISE / GRID BACKDROP ===== -->
+  <div class="grid-backdrop" aria-hidden="true"></div>
+
   <!-- ===== HEADER ===== -->
   <header>
     <nav class="navbar">
-      <a href="#home" class="logo">Saran</a>
+      <a href="#home" class="logo"><span class="logo-bracket">&lt;</span>Saran<span class="logo-bracket">/&gt;</span></a>
 
       <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#home"><span class="nav-num">01</span>~/home</a></li>
+        <li><a href="#about"><span class="nav-num">02</span>~/about</a></li>
+        <li><a href="#projects"><span class="nav-num">03</span>~/projects</a></li>
+        <li><a href="#skills"><span class="nav-num">04</span>~/skills</a></li>
+        <li><a href="#contact"><span class="nav-num">05</span>~/contact</a></li>
       </ul>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
   </header>
 
   <!-- ===== HOME / HERO ===== -->
   <section id="home">
-    <h1>Hi, I'm Saran</h1>
-    <p>CSE Student | Game Dev Enthusiast | Building Cool Things</p>
+    <div class="hero-inner">
+      <p class="eyebrow"><span class="dot"></span> available &middot; first-year CSE @ Sri Eshwar College of Engineering</p>
+      <h1 class="hero-title">
+        I build things<br>
+        that <span class="highlight">actually run.</span>
+      </h1>
+      <p class="hero-sub">
+        Not slides about software — software. This site is wired to a live database,
+        a file-upload pipeline, and an admin system I built myself. Scroll down,
+        it's all real.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">See the work →</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
   </section>
 
   <!-- ===== ABOUT ===== -->
   <section id="about">
-    <h2>About Me</h2>
-    <p>I'm a first-year CSE student at Sri Eshwar College of Engineering, Coimbatore. I'm still early in figuring out exactly where I want to specialize, but I'm drawn to building things that work end to end — from game dev experiments to this very site, which runs on a custom backend I built with Node.js, Express, and MongoDB. Right now I'm focused on strengthening my DSA fundamentals and exploring full stack development and game development to see where my interests take me.</p>
+    <p class="section-tag">02 / about</p>
+    <h2 class="section-title">Who's writing this</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a first-year CSE student at Sri Eshwar College of Engineering, Coimbatore.
+          Still early in figuring out exactly where I specialize — but I'm drawn to building
+          things end to end rather than just learning concepts in isolation.
+        </p>
+        <p>
+          This site is the proof: it's not a static page, it's a small full stack system —
+          Node &amp; Express on the backend, MongoDB for storage, Cloudinary for file uploads,
+          and a password-gated admin panel so I can add projects without touching a line of HTML.
+        </p>
+        <p>
+          Right now I'm sharpening DSA fundamentals and splitting my curiosity between
+          full stack development and game dev — figuring out which one I want to go deep on.
+        </p>
+      </div>
+      <div class="about-stack">
+        <p class="stack-label">currently exploring</p>
+        <ul class="stack-list">
+          <li><span class="stack-dot"></span>Data Structures &amp; Algorithms</li>
+          <li><span class="stack-dot"></span>Full Stack Development</li>
+          <li><span class="stack-dot"></span>Game Development</li>
+          <li><span class="stack-dot"></span>Systems that talk to real databases</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <!-- ===== PROJECTS ===== -->
   <section id="projects">
-    <h2>Projects</h2>
+    <p class="section-tag">03 / projects</p>
+    <h2 class="section-title">Things I've shipped</h2>
+    <p class="section-sub">Pulled live from my own database — add one through the admin panel and it shows up here, no redeploy needed.</p>
+    <div class="projects-grid" id="projectsGrid">
+      <!-- JS injects project cards here -->
+    </div>
   </section>
 
   <!-- ===== SKILLS ===== -->
   <section id="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>C++</li>
-      <li>Python</li>
-      <li>JavaScript</li>
-      <li>HTML/CSS</li>
-    </ul>
+    <p class="section-tag">04 / skills</p>
+    <h2 class="section-title">What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-pill"><span class="skill-index">01</span>C++</div>
+      <div class="skill-pill"><span class="skill-index">02</span>Python</div>
+      <div class="skill-pill"><span class="skill-index">03</span>JavaScript</div>
+      <div class="skill-pill"><span class="skill-index">04</span>HTML / CSS</div>
+      <div class="skill-pill"><span class="skill-index">05</span>Node.js / Express</div>
+      <div class="skill-pill"><span class="skill-index">06</span>MongoDB</div>
+    </div>
   </section>
 
   <!-- ===== CONTACT ===== -->
   <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="ssaranapriyans@gmail.com">ssaranapriyans@gmail.com</a></p>
-    <p>GitHub: <a href="https://github.com/saranapriyan-tech" target="_blank">github.com/saranapriyan-tech</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/saranapriyan-s-a14580395/" target="_blank">linkedin.com/in/Saranapriyan-S</a></p>
+    <p class="section-tag">05 / contact</p>
+    <h2 class="section-title">Let's talk</h2>
+    <p class="section-sub">Open to conversations, collabs, or just talking shop about what I'm building.</p>
+    <div class="contact-grid">
+      <a href="mailto:ssaranapriyans@gmail.com" class="contact-card">
+        <span class="contact-label">email</span>
+        <span class="contact-value">ssaranapriyans@gmail.com</span>
+        <span class="contact-arrow">→</span>
+      </a>
+      <a href="https://github.com/saranapriyan-tech" target="_blank" class="contact-card">
+        <span class="contact-label">github</span>
+        <span class="contact-value">saranapriyan-tech</span>
+        <span class="contact-arrow">→</span>
+      </a>
+      <a href="https://www.linkedin.com/in/saranapriyan-s-a14580395/" target="_blank" class="contact-card">
+        <span class="contact-label">linkedin</span>
+        <span class="contact-value">saranapriyan-s</span>
+        <span class="contact-arrow">→</span>
+      </a>
+    </div>
   </section>
+
+  <footer class="site-footer">
+    <p>Built from scratch — HTML, CSS, JS, Node, Express, MongoDB, Cloudinary.</p>
+    <p class="footer-year">© 2026 Saran</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
