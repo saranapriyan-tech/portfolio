@@ -2,6 +2,10 @@
 
 const API_URL = 'https://saran-portfolio-backend.onrender.com/api/projects';
 
+// Ask for the admin password once when the page loads.
+// This gets sent with every add/edit/delete request so the server can verify it.
+const adminPassword = prompt('Enter admin password:');
+
 const form = document.querySelector('#projectForm');
 const status = document.querySelector('#status');
 const formTitle = document.querySelector('#formTitle');
@@ -80,7 +84,10 @@ async function deleteProject(id) {
   if (!confirmed) return;
 
   try {
-    const response = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: 'DELETE',
+      headers: { 'x-admin-password': adminPassword }
+    });
     if (!response.ok) throw new Error('Delete failed');
 
     loadExistingProjects(); // refresh the list
@@ -115,6 +122,7 @@ form.addEventListener('submit', async (e) => {
       isEditing ? `${API_URL}/${editingId}` : API_URL,
       {
         method: isEditing ? 'PUT' : 'POST',
+        headers: { 'x-admin-password': adminPassword },
         body: formData // NOTE: no Content-Type header here — the browser sets it automatically for FormData
       }
     );

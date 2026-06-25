@@ -17,6 +17,19 @@ app.use((req, res, next) => {
 });
 app.use(express.json()); // lets the server read JSON sent in requests
 
+// ===== SIMPLE ADMIN PASSWORD CHECK =====
+// This runs before any route that can ADD, EDIT, or DELETE data.
+// The client must send the correct password in a header called "x-admin-password".
+function requireAdminPassword(req, res, next) {
+  const submittedPassword = req.headers['x-admin-password'];
+
+  if (submittedPassword !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({ error: 'Unauthorized: incorrect or missing admin password' });
+  }
+
+  next(); // password correct, continue to the actual route
+}
+
 // ===== CONNECT TO MONGODB =====
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
@@ -39,7 +52,7 @@ app.get('/api/projects', async (req, res) => {
 
 // ===== POST a new project (with optional file upload) =====
 // upload.single('image') = expect ONE file, sent under the field name "image"
-app.post('/api/projects', upload.single('image'), async (req, res) => {
+app.post('/api/projects', requireAdminPassword, upload.single('image'), async (req, res) => {
   try {
     const projectData = req.body;
 
@@ -64,7 +77,7 @@ app.post('/api/projects', upload.single('image'), async (req, res) => {
 });
 
 // ===== PUT (edit) an existing project by its ID =====
-app.put('/api/projects/:id', upload.single('image'), async (req, res) => {
+app.put('/api/projects/:id', requireAdminPassword, upload.single('image'), async (req, res) => {
   try {
     const projectData = req.body;
 
@@ -94,7 +107,7 @@ app.put('/api/projects/:id', upload.single('image'), async (req, res) => {
 });
 
 // ===== DELETE a project by its ID =====
-app.delete('/api/projects/:id', async (req, res) => {
+app.delete('/api/projects/:id', requireAdminPassword, async (req, res) => {
   try {
     const deletedProject = await Project.findByIdAndDelete(req.params.id);
 
