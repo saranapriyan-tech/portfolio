@@ -1,6 +1,6 @@
 // ===== ADMIN PAGE: ADD / EDIT / DELETE PROJECTS =====
 
-const API_URL = 'http://localhost:3000/api/projects';
+const API_URL = 'https://saran-portfolio-backend.onrender.com/api/projects';
 
 const form = document.querySelector('#projectForm');
 const status = document.querySelector('#status');

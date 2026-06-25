@@ -4,7 +4,7 @@ async function loadProjects() {
   const projectsContainer = document.querySelector('#projects');
 
   try {
-    const response = await fetch('http://localhost:3000/api/projects'); // wait for server reply
+    const response = await fetch('https://saran-portfolio-backend.onrender.com/api/projects'); // wait for server reply
     const projects = await response.json(); // wait for it to convert to JSON
 
     // Clear out the old hardcoded heading/content except the <h2> title
