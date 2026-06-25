@@ -1,0 +1,139 @@
+/* ===== RESET / BASICS ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* makes nav clicks scroll smoothly instead of jumping */
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* ===== HEADER / NAV ===== */
+header {
+  position: fixed;       /* stays on screen even when you scroll */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1a1a1a;
+  z-index: 100;          /* keeps nav above other content */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: #ddd;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #00bcd4; /* highlight on hover */
+}
+
+.nav-links a.active {
+  color: #00bcd4;
+  font-weight: bold;
+}
+
+/* ===== SECTIONS ===== */
+section {
+  min-height: 100vh;       /* each section takes at least the full screen height */
+  padding: 100px 2rem 60px; /* top padding clears the fixed header */
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Alternate background so sections are visually distinct while scrolling */
+section:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+/* ===== HERO (home) ===== */
+#home {
+  text-align: center;
+  justify-content: center;
+}
+
+#home h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ===== PROJECT CARDS ===== */
+.project-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.2rem;
+  margin-top: 1rem;
+  background-color: #fff;
+}
+
+.project-links {
+  margin-top: 0.8rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.project-links a {
+  color: #00838f;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.project-links a:hover {
+  text-decoration: underline;
+}
+
+/* ===== RESPONSIVE (mobile) ===== */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  section {
+    padding-top: 140px; /* extra clearance since nav is now taller (stacked) */
+  }
+}

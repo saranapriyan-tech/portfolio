@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Manage Projects</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+      background-color: #f0f0f0;
+      gap: 2rem;
+    }
+    .admin-form, .project-list {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .admin-form h1, .project-list h2 {
+      margin-bottom: 1.2rem;
+    }
+    .admin-form label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    .admin-form input,
+    .admin-form textarea {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+    .admin-form button {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 0.8rem;
+      background-color: #00bcd4;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .admin-form button:hover {
+      background-color: #0097a7;
+    }
+    #status {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    /* Existing projects list */
+    .existing-project {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .existing-project img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+    .existing-project .actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .existing-project button {
+      padding: 0.4rem 0.8rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .edit-btn { background-color: #ffc107; }
+    .delete-btn { background-color: #f44336; color: white; }
+  </style>
+</head>
+<body>
+
+  <form class="admin-form" id="projectForm" enctype="multipart/form-data">
+    <h1 id="formTitle">Add New Project</h1>
+
+    <!-- This hidden field tracks whether we're editing an existing project.
+         Empty = adding new. Filled = editing that project's ID. -->
+    <input type="hidden" id="editingId" value="">
+
+    <label for="title">Title</label>
+    <input type="text" id="title" required>
+
+    <label for="description">Description</label>
+    <textarea id="description" rows="3" required></textarea>
+
+    <label for="tech">Tech (comma-separated, e.g. HTML, CSS, JS)</label>
+    <input type="text" id="tech" required>
+
+    <label for="liveLink">Live Link (optional)</label>
+    <input type="text" id="liveLink">
+
+    <label for="githubLink">GitHub Link (optional)</label>
+    <input type="text" id="githubLink">
+
+    <label for="image">Project Image (optional)</label>
+    <input type="file" id="image" accept="image/*">
+
+    <button type="submit" id="submitBtn">Add Project</button>
+    <p id="status"></p>
+  </form>
+
+  <div class="project-list">
+    <h2>Existing Projects</h2>
+    <div id="existingProjects">Loading...</div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
