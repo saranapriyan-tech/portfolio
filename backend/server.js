@@ -2,19 +2,19 @@ require('dotenv').config(); // loads variables from .env into process.env
 
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const Project = require('./Project'); // the schema/model we made
 const upload = require('./upload');   // the Cloudinary/multer setup we just made
 
 const app = express();
 const PORT = 3000;
 
-// Allow the frontend to call this API, and allow JSON in request bodies
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  next();
-});
+// Allow the frontend to call this API, including our custom admin password header
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'x-admin-password']
+}));
 app.use(express.json()); // lets the server read JSON sent in requests
 
 // ===== SIMPLE ADMIN PASSWORD CHECK =====
