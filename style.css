@@ -208,6 +208,31 @@ section {
   max-width: 760px;
 }
 
+.greeting {
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  margin-bottom: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.wave {
+  display: inline-block;
+  animation: waveHand 2.4s ease-in-out infinite;
+  transform-origin: 70% 70%;
+}
+
+@keyframes waveHand {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+}
+
 .eyebrow {
   font-family: var(--mono);
   font-size: 0.85rem;
@@ -298,8 +323,9 @@ section {
   font-family: var(--mono);
   font-size: 0.7rem;
   color: var(--text-faint);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  max-width: 220px;
 }
 
 .scroll-line {
